@@ -1,0 +1,15 @@
+services:
+  db2:  
+    image: postgres:13
+    container_name: calculator-db  
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: malatajna
+      POSTGRES_DB: calculator_db  
+    ports:
+      - "5433:5432"  
+    volumes:
+      - postgres_data2:/var/lib/postgresql/data  
+volumes:
+  postgres_data2: 
+    driver: local

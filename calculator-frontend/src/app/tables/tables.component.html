@@ -1,0 +1,27 @@
+@if (isLoading) { Loading... } @else {
+    <div *ngIf="isLoading">Loading...</div>
+
+<table class="table-container">
+  <thead>
+    <tr>
+      <th>Table ID</th>
+      <th>Initial Investment</th>
+      <th>Annual Investment</th>
+      <th>Expected Return</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (investment of data; track investment.tableID) {
+      <tr>
+        <td>{{ investment.tableID }}</td>
+        <td>{{ investment.initialInvestment }} USD</td>
+        <td>{{ investment.annualInvestment }} USD</td>
+        <td>{{ investment.expectedReturn }}%</td>
+        <td>{{ investment.duration }} years</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+ }
