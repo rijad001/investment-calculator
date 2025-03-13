@@ -4,7 +4,7 @@ import { InvestmentFormComponent } from "./investment-form/investment-form.compo
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, InvestmentFormComponent, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

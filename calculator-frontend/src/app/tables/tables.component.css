@@ -29,3 +29,20 @@
   tr:hover {
     background-color: #f1f1f1;
   }
+
+  #delete {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+  }
+  
+  
+  #delete:hover {
+    background-color: #0056b3; 
+  }

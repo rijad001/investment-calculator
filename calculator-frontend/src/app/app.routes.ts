@@ -5,5 +5,5 @@ import { TablesComponent } from './tables/tables.component';
 export const routes: Routes = [
   { path: '', redirectTo: '/investment-form', pathMatch: 'full' }, // Podrazumevana ruta
   { path: 'investment-form', component: InvestmentFormComponent },
-  { path: 'tables', component: TablesComponent },
+  { path: 'investments', component: TablesComponent },
 ];

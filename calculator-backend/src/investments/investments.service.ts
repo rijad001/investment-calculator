@@ -9,9 +9,17 @@ export class InvestmentsService {
     @InjectRepository(Investment)
     private investmentRepository: Repository<Investment>,
   ) {}
+
   //Input data
   async create(investment: Investment): Promise<Investment> {
     return this.investmentRepository.save(investment);
   }
+
+  async getAllInvestments() : Promise<Investment[]> {
+    return await this.investmentRepository.find()
+  }
   
+  async deleteRow (id: number) {
+    return await this.investmentRepository.delete({tableID: id});
+  }
 }

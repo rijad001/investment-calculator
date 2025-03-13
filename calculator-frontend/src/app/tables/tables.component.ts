@@ -36,16 +36,15 @@ export class TablesComponent implements OnInit {
     );
   }
 
-  removeInvestment(tableID: number) {
-    this.http.delete(`http://localhost:3000/investments/${tableID}`).subscribe(
+  deleteInvestment(id: number) {
+    this.http.delete(`http://localhost:3000/investments/${id}`).subscribe(
       () => {
-        this.data = this.data.filter(
-          (investment: Investment) => investment.tableID !== tableID
-        );
+        this.data = this.data.filter((investment: Investment) => investment.tableID !== id);
       },
       (error) => {
-        console.log('Error:', error);
+        console.log('Error deleting investment:', error);
       }
     );
   }
+
 }

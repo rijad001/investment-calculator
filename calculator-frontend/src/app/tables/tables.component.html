@@ -19,6 +19,9 @@
         <td>{{ investment.annualInvestment }} USD</td>
         <td>{{ investment.expectedReturn }}%</td>
         <td>{{ investment.duration }} years</td>
+        <td>
+          <button id="delete" (click)="deleteInvestment(investment.tableID)">Obriši</button>
+        </td>
       </tr>
     }
   </tbody>

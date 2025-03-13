@@ -10,5 +10,15 @@ export class InvestmentsController {
   async create(@Body() investment: Investment): Promise<Investment> {
     return this.investmentsService.create(investment);
   }
-  
-}
+
+  @Get()
+  async getInvestment() : Promise<Investment[]> {
+    return await this.investmentsService.getAllInvestments();
+  }
+
+  @Delete(':tableID')
+    async deleteRow(@Param('tableID') id: string) {
+      return this.investmentsService.deleteRow(+id)
+    }
+  }
+

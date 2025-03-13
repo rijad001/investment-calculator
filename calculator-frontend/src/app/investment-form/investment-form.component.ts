@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './investment-form.component.html',
   styleUrls: ['./investment-form.component.css']
 })
+
 export class InvestmentFormComponent {
   investment = {
     initialInvestment: 0,
