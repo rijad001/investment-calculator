@@ -1,6 +1,15 @@
-import { Controller, Post, Body, Get, Delete, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Delete,
+  Param,
+  Put,
+} from '@nestjs/common';
 import { InvestmentsService } from './investments.service';
 import { Investment } from '../investment.entity';
+import { table } from 'console';
 
 @Controller('investments')
 export class InvestmentsController {
@@ -12,13 +21,24 @@ export class InvestmentsController {
   }
 
   @Get()
-  async getInvestment() : Promise<Investment[]> {
+  async getInvestment(): Promise<Investment[]> {
     return await this.investmentsService.getAllInvestments();
   }
 
+  @Get(':id')
+  async getInvestmentById(@Param('tabelID') id : number) : Promise<Investment> {
+    return this.investmentsService.getInvestmentById(id);
+  }
+ 
+
+
   @Delete(':tableID')
-    async deleteRow(@Param('tableID') id: string) {
-      return this.investmentsService.deleteRow(+id)
-    }
+  async deleteRow(@Param('tableID') id: string) {
+    return this.investmentsService.deleteRow(+id);
   }
 
+  @Put(':tableID')
+  async updateRow(@Param('tableID') tableID: number, @Body() updateData: Partial<Investment>): Promise<Investment>{
+    return this.investmentsService.updateRow(tableID,updateData);
+  }
+}

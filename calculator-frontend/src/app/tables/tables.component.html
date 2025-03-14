@@ -20,7 +20,8 @@
         <td>{{ investment.expectedReturn }}%</td>
         <td>{{ investment.duration }} years</td>
         <td>
-          <button id="delete" (click)="deleteInvestment(investment.tableID)">Obriši</button>
+          <button class="delete" (click)="deleteInvestment(investment.tableID)">Delete</button>
+          <a [routerLink]="['/update', investment.tableID]"><button type="button" class="delete">Update</button></a>
         </td>
       </tr>
     }

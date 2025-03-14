@@ -1,0 +1,21 @@
+<!-- update-form.html -->
+<form (ngSubmit)="onSubmit()">
+    <input type="hidden" [(ngModel)]="investment.tableID" name="tableID">
+    <div>
+      <label for="initialInvestment">Initial Investment:</label>
+      <input type="number" id="initialInvestment" [(ngModel)]="investment.initialInvestment" name="initialInvestment">
+    </div>
+    <div>
+      <label for="annualInvestment">Annual Investment:</label>
+      <input type="number" id="annualInvestment" [(ngModel)]="investment.annualInvestment" name="annualInvestment">
+    </div>
+    <div>
+      <label for="expectedReturn">Expected Return (%):</label>
+      <input type="number" id="expectedReturn" [(ngModel)]="investment.expectedReturn" name="expectedReturn">
+    </div>
+    <div>
+      <label for="duration">Duration (years):</label>
+      <input type="number" id="duration" [(ngModel)]="investment.duration" name="duration">
+    </div>
+    <button type="submit">Update</button>
+  </form>

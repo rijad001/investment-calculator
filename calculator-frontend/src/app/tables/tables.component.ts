@@ -1,23 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink, RouterModule } from '@angular/router';
+import { Investment } from "../investment.model";
 
-interface Investment {
-  tableID: number;
-  initialInvestment: number;
-  annualInvestment: number;
-  expectedReturn: number;
-  duration: number;
-}
 
 @Component({
   selector: 'app-tables',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule, RouterLink],
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.css'],
 })
-export class TablesComponent implements OnInit {
+export class TablesComponent  {
   data: any;
   constructor(private http: HttpClient) {}
   isLoading: boolean = true;
@@ -39,7 +34,9 @@ export class TablesComponent implements OnInit {
   deleteInvestment(id: number) {
     this.http.delete(`http://localhost:3000/investments/${id}`).subscribe(
       () => {
-        this.data = this.data.filter((investment: Investment) => investment.tableID !== id);
+        this.data = this.data.filter(
+          (investment: Investment) => investment.tableID !== id
+        );
       },
       (error) => {
         console.log('Error deleting investment:', error);
@@ -47,4 +44,5 @@ export class TablesComponent implements OnInit {
     );
   }
 
+  
 }
