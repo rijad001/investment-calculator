@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Investment } from '../investment.model';
+import { Investment } from '../../investment.model';
 
 @Component({
   selector: 'app-tables',

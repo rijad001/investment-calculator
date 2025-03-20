@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { InvestmentFormComponent } from "./investment-form/investment-form.component";
+import { RouterOutlet } from '@angular/router';
+import { InvestmentFormComponent } from './components/investment-form/investment-form.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [NavBarComponent, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'calculator-frontend';

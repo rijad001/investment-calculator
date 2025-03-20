@@ -1,0 +1,35 @@
+@if (isLoading) { 
+  Loading... 
+} @else {
+  <div *ngIf="isLoading">Loading...</div>
+
+  <div class="flex justify-center items-center min-h-screen"> 
+    <table class="border-collapse border border-gray-300 bg-white shadow-lg">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 px-4 py-2">Initial Investment</th>
+          <th class="border border-gray-300 px-4 py-2">Annual Investment</th>
+          <th class="border border-gray-300 px-4 py-2">Expected Return</th>
+          <th class="border border-gray-300 px-4 py-2">Duration</th>
+          <th class="border border-gray-300 px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (investment of data; track investment.tableID) {
+          <tr class="text-center">
+            <td class="border border-gray-300 px-4 py-2">{{ investment.initialInvestment }} USD</td>
+            <td class="border border-gray-300 px-4 py-2">{{ investment.annualInvestment }} USD</td>
+            <td class="border border-gray-300 px-4 py-2">{{ investment.expectedReturn }}%</td>
+            <td class="border border-gray-300 px-4 py-2">{{ investment.duration }} years</td>
+            <td class="border border-gray-300 px-4 py-2">
+              <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700" 
+                      (click)="deleteInvestment(investment.tableID)">
+                Delete
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

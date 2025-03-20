@@ -1,0 +1,63 @@
+<div class="flex flex-col justify-center items-center min-h-screen bg-gray-100">
+  <div>
+    <h1 class="text-gray-700 font-bold text-2xl my-6">Add your investment</h1>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="bg-white p-6 rounded-lg shadow-md w-80">
+    <div class="mb-4">
+      <label for="initialInvestment" class="block text-gray-700 font-medium">Initial Investment:</label>
+      <input
+        type="number"
+        id="initialInvestment"
+        [(ngModel)]="investment.initialInvestment"
+        name="initialInvestment"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="annualInvestment" class="block text-gray-700 font-medium">Annual Investment:</label>
+      <input
+        type="number"
+        id="annualInvestment"
+        [(ngModel)]="investment.annualInvestment"
+        name="annualInvestment"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="expectedReturn" class="block text-gray-700 font-medium">Expected Return (%):</label>
+      <input
+        type="number"
+        id="expectedReturn"
+        [(ngModel)]="investment.expectedReturn"
+        name="expectedReturn"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="duration" class="block text-gray-700 font-medium">Duration (years):</label>
+      <input
+        type="number"
+        id="duration"
+        [(ngModel)]="investment.duration"
+        name="duration"
+        required
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
+      />
+    </div>
+
+    <div class="mt-6">
+      <button 
+        type="submit"
+        class="w-full bg-blue-500 text-white font-bold py-2 rounded-lg hover:bg-blue-600 transition">
+        Add
+      </button>
+    </div>
+  </form>
+</div>
