@@ -1,32 +1,70 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { AuthCredentialsDto } from './dto/auth-credentials.dto';
-import { UsersRepository } from './users.repository';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './jwt-payload.interface';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly usersRepository: UsersRepository,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
     private jwtService: JwtService,
   ) {}
 
+  async createUser(authCredentials: AuthCredentialsDto): Promise<void> {
+    const { username, password } = authCredentials;
+
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const user = this.userRepository.create({
+      username,
+      password: hashedPassword,
+    });
+    try {
+      await this.userRepository.save(user);
+    } catch (error) {
+      if (error.code === '23505') {
+        throw new ConflictException('Username is already taken');
+      } else {
+        throw error;
+      }
+    }
+  }
+
+  /* async findOne(username: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { username } });
+  } */
+
   async signUp(authCredentials: AuthCredentialsDto): Promise<void> {
-    await this.usersRepository.createUser(authCredentials);
+    await this.createUser(authCredentials);
   }
 
   async signIn(
     authCredentialsDto: AuthCredentialsDto,
-  ): Promise<{ accessToken: string }> {
+  ): Promise<{ accessToken: string, refreshToken: string }> {
     const { username, password } = authCredentialsDto;
-    const user = await this.usersRepository.findOne(username);
+    const user = await this.userRepository.findOne({
+      where: {
+        username: username,
+      },
+    });
 
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };
       const accessToken: string = await this.jwtService.sign(payload);
-      return { accessToken };
+      const refreshToken = await this.jwtService.sign(payload, {
+        expiresIn: '7d',
+      });
+      return { accessToken, refreshToken };
     } else {
       throw new UnauthorizedException('Please check your login credentials');
     }
