@@ -1,5 +1,5 @@
 @if (isLoading) { Loading... } @else {
-    <div *ngIf="isLoading">Loading...</div>
+<div *ngIf="isLoading">Loading...</div>
 
 <table class="table-container">
   <thead>
@@ -13,19 +13,20 @@
   </thead>
   <tbody>
     @for (investment of data; track investment.tableID) {
-      <tr>
-        <td>{{ investment.tableID }}</td>
-        <td>{{ investment.initialInvestment }} USD</td>
-        <td>{{ investment.annualInvestment }} USD</td>
-        <td>{{ investment.expectedReturn }}%</td>
-        <td>{{ investment.duration }} years</td>
-        <td>
-          <button class="delete" (click)="deleteInvestment(investment.tableID)">Delete</button>
-          <a [routerLink]="['/update', investment.tableID]"><button type="button" class="delete">Update</button></a>
-        </td>
-      </tr>
+    <tr>
+      <td>{{ investment.tableID }}</td>
+      <td>{{ investment.initialInvestment }} USD</td>
+      <td>{{ investment.annualInvestment }} USD</td>
+      <td>{{ investment.expectedReturn }}%</td>
+      <td>{{ investment.duration }} years</td>
+      <td>
+        <button class="delete" (click)="deleteInvestment(investment.tableID)">
+          Delete
+        </button>
+      </td>
+    </tr>
     }
   </tbody>
 </table>
 
- }
+}

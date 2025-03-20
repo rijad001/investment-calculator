@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { RouterLink, RouterModule } from '@angular/router';
-import { Investment } from "../investment.model";
-
+import { RouterModule } from '@angular/router';
+import { Investment } from '../investment.model';
 
 @Component({
   selector: 'app-tables',
   standalone: true,
-  imports: [CommonModule, RouterModule, RouterLink],
+  imports: [CommonModule, RouterModule],
   templateUrl: './tables.component.html',
   styleUrls: ['./tables.component.css'],
 })
-export class TablesComponent  {
+export class TablesComponent {
   data: any;
   constructor(private http: HttpClient) {}
   isLoading: boolean = true;
@@ -43,6 +42,4 @@ export class TablesComponent  {
       }
     );
   }
-
-  
 }
