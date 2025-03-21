@@ -18,7 +18,7 @@ export class InvestmentsService {
     return await this.investmentRepository.find();
   }
 
-  async deleteRow(id: number) {
+  async deleteRow(id: string) {
     return await this.investmentRepository.delete({ tableID: id });
   }
 }

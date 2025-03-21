@@ -57,7 +57,7 @@ export class AuthService {
         username: username,
       },
     });
-
+    if(!user) throw new UnauthorizedException('Invalid username');
     if (user && (await bcrypt.compare(password, user.password))) {
       const payload: JwtPayload = { username };
       const accessToken: string = await this.jwtService.sign(payload);
@@ -65,8 +65,8 @@ export class AuthService {
         expiresIn: '7d',
       });
       return { accessToken, refreshToken };
-    } else {
-      throw new UnauthorizedException('Please check your login credentials');
+    } else{
+      throw new UnauthorizedException('Incorrect password');
     }
   }
 }

@@ -31,14 +31,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       }),
     }),
   ],
-  providers: [
-    AuthService,
-    {
-      provide: APP_PIPE,
-      useClass: ValidationPipe,
-    },
-    JwtStrategy,
-  ],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
   exports: [JwtStrategy, PassportModule],
 })

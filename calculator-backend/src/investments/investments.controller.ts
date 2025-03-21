@@ -20,6 +20,7 @@ export class InvestmentsController {
 
   @Delete(':tableID')
   async deleteRow(@Param('tableID') id: string) {
-    return this.investmentsService.deleteRow(+id);
+    return this.investmentsService.deleteRow(id);
   }
+
 }

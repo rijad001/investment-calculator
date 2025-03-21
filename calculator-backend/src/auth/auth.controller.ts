@@ -12,7 +12,7 @@ export class AuthController {
     await this.authService.signUp(authCredentials);
   }
 
-  @Post('signin')
+  @Post('login')
   async signIn(
     @Body() authCredentialsDto: AuthCredentialsDto,
   ): Promise<{ accessToken: string, refreshToken: string }> {
